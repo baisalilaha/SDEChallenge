@@ -40,4 +40,6 @@ public interface DataEntry<V> {
          */
         boolean isEmpty();
     }
+
+    void remove(Object node);
 }

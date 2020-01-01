@@ -1,24 +1,69 @@
-# PaytmLabs SDE Challenge
+# Calculating Simple Moving Average of given last N numbers
 
-## Coding Question
+## Description
 
-Write an interface for a data structure that can provide the moving average of the last N elements added, add elements to the structure and get access to the elements. Provide an efficient implementation of the interface for the data structure.
+A simple Java application that implements the data structure DataEntry, which is used to calculate and return Simple Moving Average 
+for last N number of entries in a data set. Where, N is the user given value or limit or window which is used as the divisor for 
+calculating average. N can be any positive non-zero integer.
 
-### Minimum Requirements
+```
+Example :   
+ N : 4 
+ Dataset : { 1}
+ Moving Average : 1
+ Dataset : { 1, 3, 4, 6}
+ Moving Average : 3.5
+```
+In this implementation, when a new value is inserted in the data set, then oldest element in the set is removed, while the size of data set is equal to N. 
+For example, if 7 is inserted in the above set of data, then 1 is removed from the set as it is the oldest data in the set and moving average 
+is recalculated with the new set of data :
+```
+Example :   
+ N : 4
+ Dataset : { 3, 4, 6, 7}
+ Moving Average : 5.0
+```
+Here, moving average of last N elements in the data set has been calculated in O(1) time. 
+N has to be specified while initialing the class dataEntryImpl. And values in this data set is specified by the user as well.
 
-1. Provide a separate interface (IE `interface`/`trait`) with documentation for the data structure
-2. Provide an implementation for the interface
-3. Provide any additional explanation about the interface and implementation in a README file.
+## Pre-requisites
+To run this project - 
+    **Java 8** or higher version and
+    **Maven** version 3.6.x is needed.
 
-## Design Question
 
-Design A Google Analytic like Backend System.
-We need to provide Google Analytic like services to our customers. Please provide a high level solution design for the backend system. Feel free to choose any open source tools as you want.
+## Execution steps
 
-### Requirements
+This project can be cloned from [github](https://github.com/baisalilaha/sde_coding_challenge) location.
+It can be imported as a Maven project in any IDE.
+Below command can be used to create .jar file from root directory of the project folders or Terminal window of the  IDE.
 
-1. Handle large write volume: Billions of write events per day.
-2. Handle large read/query volume: Millions of merchants wish to gain insight into their business. Read/Query patterns are time-series related metrics.
-3. Provide metrics to customers with at most one hour delay.
-4. Run with minimum downtime.
-5. Have the ability to reprocess historical data in case of bugs in the processing logic.
+     mvn package
+
+Above command will execute all associated test cases as well. And MovingAverage-1.0-SNAPSHOT.jar will be available inside
+**{path_to_project_dir}/MovingAverage/target/**
+
+
+
+## Implementation
+
+MovingAverage-1.0-SNAPSHOT.jar can be added as an dependency with any Java application.
+
+In order to get moving average of last N numbers, DataEntryImpl class has to be instantiated- providing the value N, as a variable
+```java
+DataEntryImpl data = new DataEntryImpl(3);
+```
+In this above example N = 3.
+
+To add new values in this data structure, we have to use DataEntryImpl.put method, example: 
+```java
+DataEntryImpl data = new DataEntryImpl(3);
+data.put( 6.79);
+```   
+getMovingAverage method can be used to view moving average of these inserted values:
+```java
+DataEntryImpl data = new DataEntryImpl(3);
+data.getMovingAverage();
+``` 
+
+Log level has been set to DEBUG right now, which can be modified in   ../src/resources/log4j.properties file

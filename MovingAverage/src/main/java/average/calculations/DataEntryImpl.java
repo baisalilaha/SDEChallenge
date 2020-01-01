@@ -112,13 +112,7 @@ public class DataEntryImpl implements DataEntry{
                  */
                 if(size == limit) {
                     Entry removeNode = entryList.getRight();
-                    double deductValue = Double.parseDouble(removeNode.getValue().toString());
-                    entryList.setRight(removeNode.right);
-                    removeNode.right = null;
-                    size--;
-                    if(logger.isDebugEnabled()) logger.debug("Data To be removed : " + deductValue);
-                    sum = sum - deductValue;
-                    if(logger.isDebugEnabled()) logger.debug("sum after deduction " + sum);
+                    remove(removeNode);
                 }
 
                 //Add newly created node on the right of existing last node
@@ -136,7 +130,7 @@ public class DataEntryImpl implements DataEntry{
                 //increase number of the linked nodes. This will keep track if first node of the list has to be deleted
                 size++;
             }
-            if(logger.isDebugEnabled()) logger.debug("sum after adding " + data.getValue() + " " + sum);
+            if(logger.isDebugEnabled()) logger.debug("sum after adding " + data.getValue() + " is " + sum);
 
             //Calculate and Set Simple Moving Average
             this.avg = sum / size;
@@ -157,4 +151,22 @@ public class DataEntryImpl implements DataEntry{
     public Double getMovingAverage() {
         return this.avg;
     }
+
+    /**
+     * Removes a node from the existing set of data
+     *
+     * @param node - An element in the data set
+     */
+    @Override
+    public void remove(Object node) {
+        Entry removeNode = (Entry) node;
+        double deductValue = Double.parseDouble(removeNode.getValue().toString());
+        entryList.setRight(removeNode.right);
+        removeNode.right = null;
+        size--;
+        if(logger.isDebugEnabled()) logger.debug("Data To be removed : " + deductValue);
+        sum = sum - deductValue;
+        if(logger.isDebugEnabled()) logger.debug("sum after deduction " + sum);
+    }
+
 }

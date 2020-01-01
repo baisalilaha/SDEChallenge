@@ -8,24 +8,16 @@ public class MovingAverage {
 
     public static void main(String[] args){
 
-        DataEntryImpl data = new DataEntryImpl(9);
-        data.put(1.2);
+        DataEntryImpl data = new DataEntryImpl(4);
+        data.put(1);
         if(logger.isDebugEnabled()) logger.debug("getMovingAverage : " + data.getMovingAverage());
-        data.put( 9);
+        data.put( 3);
+        data.put( 4);
+        data.put( 6);
         if(logger.isDebugEnabled()) logger.debug("getMovingAverage : " + data.getMovingAverage());
-        data.put( 8.5);
+        data.put( 7);
         if(logger.isDebugEnabled()) logger.debug("getMovingAverage : " + data.getMovingAverage());
-        data.put( 7.10);
-        if(logger.isDebugEnabled()) logger.debug("getMovingAverage : " + data.getMovingAverage());
-        data.put( 6.79);
-        if(logger.isDebugEnabled()) logger.debug("getMovingAverage : " + data.getMovingAverage());
-        data.put( 12);
-        if(logger.isDebugEnabled()) logger.debug("getMovingAverage : " + data.getMovingAverage());
-        data.put( 7.21);
-        if(logger.isDebugEnabled()) logger.debug("getMovingAverage : " + data.getMovingAverage());
-        data.put( 8);
-        data.put( 9);
-        data.put( 10);
+        data.put( 8.9);
         if(logger.isDebugEnabled()) logger.debug("getMovingAverage : " + data.getMovingAverage());
     }
 }
